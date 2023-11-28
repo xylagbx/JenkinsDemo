@@ -10,10 +10,8 @@ pipeline {
         }
 		stage('run') {
 			steps {
-				background {
-					dir('target') {
-						sh '~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar'
-					}
+				dir('target') {
+					sh 'nohup ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > /dev/null &'
 				}
 			}
 		}
