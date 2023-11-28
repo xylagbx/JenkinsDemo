@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: dev
+
+student:
+  name: ZhangSan
+  age: 18
+  sex: male
