@@ -1,12 +1,20 @@
 pipeline {
-    agent master
+    agent {
+		label 'master'
+	}
     stages {
         stage('build') {
             steps {
-                sh 'echo "Hello world!"'
-				sh '/Users/bx/apache-maven-3.6.3/bin/mvn clean package'
+				sh '~/apache-maven-3.6.3/bin/mvn clean package'
             }
         }
+		stage('run') {
+			steps {
+				dir('target') {
+					sh 'nohup ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > /dev/null &'
+				}
+			}
+		}
     }
     post {
         always {
