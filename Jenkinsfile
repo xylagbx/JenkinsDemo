@@ -11,7 +11,7 @@ pipeline {
 		stage('run') {
 			steps {
 				dir('target') {
-					sh 'BUILD_ID=dontKillMe nohup ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > output.log 2>&1 &'
+					sh 'JENKINS_NODE_COOKIE=dontKillMe nohup ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > output.log 2>&1 &'
 				}
 			}
 		}
