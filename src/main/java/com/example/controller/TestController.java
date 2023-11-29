@@ -1,22 +1,26 @@
 package com.example.controller;
 
 import com.example.config.StudentConfig;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/test")
 public class TestController {
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "hello";
-    }
+	@Resource
+	private StudentConfig studentConfig;
 
-    @GetMapping("/test2")
-    public StudentConfig studentConfig() {
-        return new StudentConfig();
-    }
+	@GetMapping("/hello")
+	public String hello() {
+		return "hello";
+	}
+
+	@GetMapping("/test2")
+	public StudentConfig studentConfig() {
+		return this.studentConfig;
+	}
 }

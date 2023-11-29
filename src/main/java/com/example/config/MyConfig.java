@@ -6,8 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class MyConfig {
-    @Bean
-    public A aaa() {
-        return new A();
-    }
+	@Bean
+	public A aaa() {
+		return new A();
+	}
 }

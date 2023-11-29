@@ -1,5 +1,6 @@
 package com.example.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -7,36 +8,43 @@ import org.springframework.stereotype.Component;
 @Component
 public class StudentConfig {
 
-    private String name;
-    private int age;
-    private String sex;
+	// 如何在创建这个对象的时候自动读取 application.yml 中的配置项作为字段的默认值？
+	@Value("${student.name}")
+	private String name;
 
-    public String getName() {
-        return name;
-    }
+	@Value("${student.age}")
+	private int age;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	@Value("${student.sex}")
+	private String sex;
 
-    public int getAge() {
-        return age;
-    }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getSex() {
-        return sex;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
+	public int getAge() {
+		return age;
+	}
 
-    @Override
-    public String toString() {
-        return "StudentConfig{" + "name='" + name + '\'' + ", age=" + age + ", sex='" + sex + '\'' + '}';
-    }
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	@Override
+	public String toString() {
+		return "StudentConfig{" + "name='" + name + '\'' + ", age=" + age + ", sex='" + sex + '\'' + '}';
+	}
 }
