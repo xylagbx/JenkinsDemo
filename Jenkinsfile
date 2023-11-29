@@ -11,8 +11,9 @@ pipeline {
 		stage('run') {
 			steps {
 				dir('target') {
-					sh 'nohup ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > output.log 2>&1 &  disown'
-					sleep 10
+					// sh 'nohup ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > output.log 2>&1 &  disown'
+					// sleep 10
+					sh 'setsid ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > output.log 2>&1 &'
 				}
 			}
 		}
