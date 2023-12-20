@@ -1,20 +1,25 @@
 pipeline {
     agent {
-		label 'master'
+		docker {
+			image 'maven:latest'
+			args '-v /root/.m2:/root/.m2'
+		}
 	}
     stages {
         stage('build') {
             steps {
-				sh '~/apache-maven-3.6.3/bin/mvn clean package'
+		//sh '~/apache-maven-3.6.3/bin/mvn clean package'
+		    sh 'echo "hello build"'
+		    sh 'mvn --version'
             }
         }
-		stage('deploy') {
-			steps {
-				dir('target') {
-					sh 'JENKINS_NODE_COOKIE=dontKillMe nohup ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > output.log 2>&1 &'
-				}
-			}
-		}
+	// stage('deploy') {
+	// 		steps {
+	// 			dir('target') {
+	// 				sh 'JENKINS_NODE_COOKIE=dontKillMe nohup ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > output.log 2>&1 &'
+	// 			}
+	// 		}
+	// 	}
     }
     post {
         always {
