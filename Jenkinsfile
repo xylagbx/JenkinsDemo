@@ -1,22 +1,21 @@
 pipeline {
-    agent any
-    stages {
-        stage('build') {
-            steps {
-		//sh '~/apache-maven-3.6.3/bin/mvn clean package'
-		    sh 'echo "hello build"'
-		    sh 'mvn --version'
-            }
-        }
-	// stage('deploy') {
-	// 		steps {
-	// 			dir('target') {
-	// 				sh 'JENKINS_NODE_COOKIE=dontKillMe nohup ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > output.log 2>&1 &'
-	// 			}
-	// 		}
-	// 	}
-    }
-    post {
+	agent any
+	stages {
+		stage('build') {
+			steps {
+				sh '~/apache-maven-3.6.3/bin/mvn clean package'
+				sh 'echo "hello build"'
+			}
+		}
+		stage('deploy') {
+			steps {
+				dir('target') {
+					sh 'JENKINS_NODE_COOKIE=dontKillMe nohup ~/Library/Java/JavaVirtualMachines/corretto-1.8.0_392/Contents/Home/bin/java -jar JenkinsDemo-1.0-SNAPSHOT.jar > output.log 2>&1 &'
+				}
+			}
+		}
+	}
+	post {
         always {
             echo 'This will always run'
         }
